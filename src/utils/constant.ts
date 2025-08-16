@@ -6,6 +6,7 @@ import {
   SearchIcon,
 } from '@sanity/icons'
 import type {FieldGroupDefinition} from 'sanity'
+import {ALL_FIELDS_GROUP} from 'sanity'
 
 export const GROUP = {
   SEO: 'seo',
@@ -16,6 +17,10 @@ export const GROUP = {
 }
 
 export const GROUPS: FieldGroupDefinition[] = [
+  {
+    ...ALL_FIELDS_GROUP,
+    hidden: true,
+  },
   {
     name: GROUP.MAIN_CONTENT,
     icon: ComposeIcon,
