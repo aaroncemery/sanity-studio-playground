@@ -19,20 +19,7 @@ const richTextMembers = [
       {title: 'Bullet', value: 'bullet'},
     ],
     marks: {
-      annotations: [
-        {
-          name: 'customLink',
-          type: 'object',
-          title: 'Internal/External Link',
-          icon: LinkIcon,
-          fields: [
-            defineField({
-              name: 'customLink',
-              type: 'customUrl',
-            }),
-          ],
-        },
-      ],
+      annotations: [],
       decorators: [
         {title: 'Strong', value: 'strong'},
         {title: 'Emphasis', value: 'em'},

@@ -51,6 +51,7 @@ export const blog = defineType({
       group: GROUP.MAIN_CONTENT,
       options: {
         source: 'title',
+        slugify: (input) => `blog/${input.toLowerCase().replace(/\s+/g, '-')}`,
         isUnique,
       },
       validation: (rule) => [
@@ -58,7 +59,7 @@ export const blog = defineType({
         rule.custom((value, context) => {
           if (!value?.current) return true
           if (!value.current.startsWith('blog')) {
-            return 'URL slug must start with /blog/'
+            return 'URL slug must start with blog/'
           }
           return true
         }),
@@ -67,12 +68,18 @@ export const blog = defineType({
     defineField({
       name: 'publishedAt',
       type: 'datetime',
-      initialValue: new Date().toISOString().split('T')[0],
+      initialValue: (() => {
+        const now = new Date()
+        const minutes = now.getMinutes()
+        const roundedMinutes = Math.round(minutes / 15) * 15
+        now.setMinutes(roundedMinutes, 0, 0)
+        return now.toISOString()
+      })(),
       options: {
         dateFormat: 'YYYY-MM-DD',
         timeFormat: 'HH:mm',
         timeStep: 15,
-        displayTimeZone: 'Los_Angeles',
+        displayTimeZone: 'America/Los_Angeles',
       },
       group: GROUP.MAIN_CONTENT,
       validation: (rule) => [rule.required().error('A published date is required')],
