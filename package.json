@@ -17,6 +17,7 @@
   "dependencies": {
     "@sanity/orderable-document-list": "^1.4.0",
     "@sanity/vision": "^4.4.1",
+    "lucide-react": "^0.539.0",
     "react": "^19.1",
     "react-dom": "^19.1",
     "sanity": "^4.4.1",
